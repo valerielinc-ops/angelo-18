@@ -327,7 +327,7 @@ copyIbanButton.addEventListener("click", async () => {
 
 document.querySelector("#share-button").addEventListener("click", () => {
   const shareUrl = new URL(window.location.href);
-  shareUrl.searchParams.set("v", "2");
+  shareUrl.searchParams.set("v", "3");
   shareUrl.hash = "";
   const message = [
     "Angelo compie 18 anni ✦",
