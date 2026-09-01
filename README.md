@@ -16,7 +16,7 @@ Poi apri `http://localhost:4173`.
 
 ## Dati modificabili
 
-Data, IBAN e ID del brano YouTube sono raccolti nell’oggetto `EVENT` all’inizio di `script.js`. Il valore IBAN iniziale è volutamente fittizio e va sostituito prima di condividere il sito.
+Data e IBAN sono raccolti nell’oggetto `EVENT` all’inizio di `script.js`. La musica usa il preview ufficiale Apple Music, avviato dal tap per essere compatibile con iPhone. Il valore IBAN iniziale è volutamente fittizio e va sostituito prima di condividere il sito.
 
 ## Pubblicazione
 

@@ -4,12 +4,11 @@ const EVENT = {
   title: "Angelo 18 — Black Party",
   location: "LUHMA Beef & Sushi Bar, Via Stabia 6, 84012 Angri SA",
   iban: "IT00 0000 0000 0000 0000 0000 000", // Sostituisci con l’IBAN reale.
-  youtubeId: "dScPWds_mZI",
 };
 
 const intro = document.querySelector("#intro");
 const enterButton = document.querySelector("#enter-party");
-const player = document.querySelector("#audio-player");
+const soundtrack = document.querySelector("#soundtrack");
 const musicToggle = document.querySelector("#music-toggle");
 const musicLabel = musicToggle.querySelector(".music-toggle__label");
 const header = document.querySelector("#site-header");
@@ -25,34 +24,19 @@ let toastTimer;
 document.body.classList.add("is-locked");
 musicToggle.hidden = true;
 
-function startMusic() {
-  const source = new URL(`https://www.youtube-nocookie.com/embed/${EVENT.youtubeId}`);
-  source.search = new URLSearchParams({
-    autoplay: "1",
-    loop: "1",
-    playlist: EVENT.youtubeId,
-    controls: "0",
-    disablekb: "1",
-    fs: "0",
-    playsinline: "1",
-    rel: "0",
-  });
-
-  player.replaceChildren();
-  const iframe = document.createElement("iframe");
-  iframe.src = source.toString();
-  iframe.allow = "autoplay; encrypted-media";
-  iframe.title = "Movin’ To The Sun — HUGEL, Imael Angel & Ultra Naté";
-  iframe.tabIndex = -1;
-  player.append(iframe);
-  isMusicPlaying = true;
-  updateMusicButton();
+async function startMusic() {
+  try {
+    soundtrack.volume = 0.9;
+    await soundtrack.play();
+  } catch {
+    isMusicPlaying = false;
+    updateMusicButton();
+    showToast("Tocca Sound on per avviare la musica");
+  }
 }
 
 function stopMusic() {
-  player.replaceChildren();
-  isMusicPlaying = false;
-  updateMusicButton();
+  soundtrack.pause();
 }
 
 function updateMusicButton() {
@@ -76,6 +60,16 @@ musicToggle.addEventListener("click", () => {
   } else {
     startMusic();
   }
+});
+
+soundtrack.addEventListener("play", () => {
+  isMusicPlaying = true;
+  updateMusicButton();
+});
+
+soundtrack.addEventListener("pause", () => {
+  isMusicPlaying = false;
+  updateMusicButton();
 });
 
 function pad(value, length = 2) {

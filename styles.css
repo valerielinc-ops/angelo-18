@@ -14,6 +14,8 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+  scroll-snap-type: y proximity;
   background: var(--black);
 }
 
@@ -341,13 +343,8 @@ a:focus-visible {
   animation: intro-rise 1s 0.7s both;
 }
 
-#audio-player {
-  position: fixed;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
+#soundtrack {
+  display: none;
 }
 
 .site-header {
@@ -587,6 +584,11 @@ a:focus-visible {
   z-index: 3;
   overflow: hidden;
   padding: clamp(6.5rem, 18vw, 11rem) var(--page-pad);
+}
+
+main > section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .section__inner {
@@ -1128,6 +1130,7 @@ a:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+    scroll-snap-type: none;
   }
 
   *,
