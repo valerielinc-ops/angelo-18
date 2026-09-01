@@ -1,6 +1,6 @@
 const EVENT = {
-  startsAt: new Date("2026-11-23T20:00:00+01:00"),
-  endsAt: new Date("2026-11-24T01:00:00+01:00"),
+  startsAt: new Date("2026-11-22T20:00:00+01:00"),
+  endsAt: new Date("2026-11-23T01:00:00+01:00"),
   title: "Angelo 18 — Black Party",
   location: "LUHMA Beef & Sushi Bar, Via Stabia 6, 84012 Angri SA",
   iban: "IT00 0000 0000 0000 0000 0000 000", // Sostituisci con l’IBAN reale.
@@ -234,7 +234,7 @@ function updateCountdown() {
     seconds: totalSeconds % 60,
   };
 
-  document.querySelector("#days").textContent = pad(values.days, 3);
+  document.querySelector("#days").textContent = String(values.days);
   document.querySelector("#hours").textContent = pad(values.hours);
   document.querySelector("#minutes").textContent = pad(values.minutes);
   document.querySelector("#seconds").textContent = pad(values.seconds);
@@ -327,11 +327,11 @@ copyIbanButton.addEventListener("click", async () => {
 
 document.querySelector("#share-button").addEventListener("click", () => {
   const shareUrl = new URL(window.location.href);
-  shareUrl.searchParams.set("v", "3");
+  shareUrl.searchParams.set("v", "4");
   shareUrl.hash = "";
   const message = [
     "Angelo compie 18 anni ✦",
-    "23 novembre 2026 · ore 20:00",
+    "22 novembre 2026 · ore 20:00",
     "LUHMA Beef & Sushi Bar · Angri",
     shareUrl.toString(),
   ].join("\n");
