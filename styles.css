@@ -13,9 +13,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem;
-  scroll-snap-type: y proximity;
+  scroll-behavior: auto;
   background: var(--black);
 }
 
@@ -587,8 +585,7 @@ a:focus-visible {
 }
 
 main > section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-margin-top: 4.5rem;
 }
 
 .section__inner {
@@ -1080,6 +1077,31 @@ main > section {
   }
 }
 
+@media (max-width: 699px) and (max-height: 900px) {
+  .section {
+    padding-top: 4.75rem;
+    padding-bottom: 4.75rem;
+  }
+
+  .section-title {
+    margin-bottom: 2.3rem;
+  }
+
+  .detail-card {
+    padding-top: 1.15rem;
+    padding-bottom: 1.55rem;
+  }
+
+  .gift__copy {
+    margin-bottom: 1.8rem;
+  }
+
+  .iban-card__number {
+    margin-top: 2rem;
+    margin-bottom: 1.4rem;
+  }
+}
+
 @media (min-width: 1024px) {
   .hero__content {
     margin-top: 2rem;
@@ -1130,7 +1152,6 @@ main > section {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-    scroll-snap-type: none;
   }
 
   *,

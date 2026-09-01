@@ -17,9 +17,21 @@ const ibanValue = document.querySelector("#iban-value");
 const ibanNote = document.querySelector("#iban-note");
 const copyIbanButton = document.querySelector("#copy-iban");
 const toast = document.querySelector("#toast");
+const sections = [...document.querySelectorAll("main > section")];
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 let isMusicPlaying = false;
 let toastTimer;
+let activeSectionIndex = 0;
+let sectionAnimationFrame;
+let sectionAnimationActive = false;
+let wheelDelta = 0;
+let wheelGestureUsed = false;
+let wheelIdleTimer;
+let touchStartX = 0;
+let touchStartY = 0;
+let touchLastX = 0;
+let touchLastY = 0;
 
 document.body.classList.add("is-locked");
 musicToggle.hidden = true;
@@ -60,6 +72,142 @@ musicToggle.addEventListener("click", () => {
   } else {
     startMusic();
   }
+});
+
+function closestSectionIndex() {
+  const headerOffset = header.offsetHeight;
+  const currentPosition = window.scrollY + headerOffset;
+
+  return sections.reduce((closestIndex, section, index) => {
+    const closestDistance = Math.abs(sections[closestIndex].offsetTop - currentPosition);
+    const sectionDistance = Math.abs(section.offsetTop - currentPosition);
+    return sectionDistance < closestDistance ? index : closestIndex;
+  }, 0);
+}
+
+function sectionTargetY(index) {
+  if (index === 0) return 0;
+  return Math.max(0, sections[index].offsetTop - header.offsetHeight);
+}
+
+function goToSection(index) {
+  const nextIndex = Math.max(0, Math.min(index, sections.length - 1));
+  const startY = window.scrollY;
+  const targetY = sectionTargetY(nextIndex);
+  const distance = targetY - startY;
+
+  if (Math.abs(distance) < 2) {
+    activeSectionIndex = nextIndex;
+    return;
+  }
+
+  window.cancelAnimationFrame(sectionAnimationFrame);
+  activeSectionIndex = nextIndex;
+
+  if (reducedMotion.matches) {
+    window.scrollTo(0, targetY);
+    return;
+  }
+
+  sectionAnimationActive = true;
+  const startedAt = performance.now();
+  const duration = Math.min(900, Math.max(620, Math.abs(distance) * 0.42));
+
+  function animate(now) {
+    const progress = Math.min(1, (now - startedAt) / duration);
+    const eased = progress < 0.5
+      ? 4 * progress ** 3
+      : 1 - ((-2 * progress + 2) ** 3) / 2;
+
+    window.scrollTo(0, startY + distance * eased);
+
+    if (progress < 1) {
+      sectionAnimationFrame = window.requestAnimationFrame(animate);
+    } else {
+      sectionAnimationActive = false;
+    }
+  }
+
+  sectionAnimationFrame = window.requestAnimationFrame(animate);
+}
+
+function moveOneSection(direction) {
+  const baseIndex = sectionAnimationActive ? activeSectionIndex : closestSectionIndex();
+  goToSection(baseIndex + direction);
+}
+
+window.addEventListener("wheel", (event) => {
+  if (reducedMotion.matches || document.body.classList.contains("is-locked")) return;
+  if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+
+  event.preventDefault();
+  window.clearTimeout(wheelIdleTimer);
+  wheelIdleTimer = window.setTimeout(() => {
+    wheelDelta = 0;
+    wheelGestureUsed = false;
+  }, 180);
+
+  if (wheelGestureUsed || sectionAnimationActive) return;
+
+  wheelDelta += event.deltaY;
+  if (Math.abs(wheelDelta) < 18) return;
+
+  wheelGestureUsed = true;
+  moveOneSection(wheelDelta > 0 ? 1 : -1);
+}, { passive: false });
+
+window.addEventListener("touchstart", (event) => {
+  if (event.touches.length !== 1 || document.body.classList.contains("is-locked")) return;
+  touchStartX = event.touches[0].clientX;
+  touchStartY = event.touches[0].clientY;
+  touchLastX = touchStartX;
+  touchLastY = touchStartY;
+}, { passive: true });
+
+window.addEventListener("touchmove", (event) => {
+  if (reducedMotion.matches || event.touches.length !== 1 || document.body.classList.contains("is-locked")) return;
+  touchLastX = event.touches[0].clientX;
+  touchLastY = event.touches[0].clientY;
+
+  const distanceX = touchLastX - touchStartX;
+  const distanceY = touchLastY - touchStartY;
+  if (Math.abs(distanceY) > 8 && Math.abs(distanceY) > Math.abs(distanceX)) {
+    event.preventDefault();
+  }
+}, { passive: false });
+
+window.addEventListener("touchend", () => {
+  if (reducedMotion.matches || document.body.classList.contains("is-locked")) return;
+  const distanceX = touchLastX - touchStartX;
+  const distanceY = touchLastY - touchStartY;
+
+  if (Math.abs(distanceY) >= 48 && Math.abs(distanceY) > Math.abs(distanceX)) {
+    moveOneSection(distanceY < 0 ? 1 : -1);
+  }
+}, { passive: true });
+
+window.addEventListener("keydown", (event) => {
+  if (document.body.classList.contains("is-locked")) return;
+  if (["BUTTON", "A", "INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName)) return;
+
+  if (["ArrowDown", "PageDown", " "].includes(event.key)) {
+    event.preventDefault();
+    moveOneSection(1);
+  } else if (["ArrowUp", "PageUp"].includes(event.key)) {
+    event.preventDefault();
+    moveOneSection(-1);
+  }
+});
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const target = document.querySelector(link.getAttribute("href"));
+    const targetIndex = sections.indexOf(target);
+    if (targetIndex === -1) return;
+
+    event.preventDefault();
+    goToSection(targetIndex);
+  });
 });
 
 soundtrack.addEventListener("play", () => {
