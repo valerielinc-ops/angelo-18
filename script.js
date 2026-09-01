@@ -178,11 +178,14 @@ copyIbanButton.addEventListener("click", async () => {
 });
 
 document.querySelector("#share-button").addEventListener("click", () => {
+  const shareUrl = new URL(window.location.href);
+  shareUrl.searchParams.set("v", "2");
+  shareUrl.hash = "";
   const message = [
     "Angelo compie 18 anni ✦",
     "23 novembre 2026 · ore 20:00",
     "LUHMA Beef & Sushi Bar · Angri",
-    window.location.href,
+    shareUrl.toString(),
   ].join("\n");
   window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
 });
