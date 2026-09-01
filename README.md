@@ -2,7 +2,8 @@
 
 Invito web statico mobile-first per i 18 anni di Angelo Caldarelli.
 
-Live: <https://angelo18.ch/>  
+Live: <https://angelo18.ch/>
+
 Fallback GitHub Pages: <https://valerielinc-ops.github.io/angelo-18/>
 
 ## Sviluppo locale
