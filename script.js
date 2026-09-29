@@ -3,7 +3,7 @@ const EVENT = {
   endsAt: new Date("2026-11-23T01:30:00+01:00"),
   title: "Angelo 18 — Midnight Elegance",
   location: "LUHMA Beef & Sushi Bar, Via Stabia 6, 84012 Angri SA",
-  iban: "IT00 0000 0000 0000 0000 0000 000", // Sostituisci con l’IBAN reale.
+  iban: "IT07N0306940283100000010474",
 };
 
 const intro = document.querySelector("#intro");
@@ -356,7 +356,7 @@ copyIbanButton.addEventListener("click", async () => {
 
 document.querySelector("#share-button").addEventListener("click", () => {
   const shareUrl = new URL(window.location.href);
-  shareUrl.searchParams.set("v", "7");
+  shareUrl.searchParams.set("v", "11");
   shareUrl.hash = "";
   const message = [
     "Angelo compie 18 anni ✦",

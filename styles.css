@@ -1,10 +1,10 @@
 :root {
   --black: #050914;
-  --black-soft: #081326;
-  --navy: #0d1e36;
-  --navy-bright: #15335d;
-  --night-glow: rgba(92, 145, 220, 0.2);
-  --night-edge: rgba(112, 166, 237, 0.2);
+  --black-soft: #0a1830;
+  --navy: #112a4a;
+  --navy-bright: #1c4777;
+  --night-glow: rgba(104, 168, 255, 0.26);
+  --night-edge: rgba(126, 183, 246, 0.24);
   --white: #f3f7fc;
   --silver: #b7c4d5;
   --line: rgba(170, 201, 238, 0.2);
@@ -446,12 +446,12 @@ a:focus-visible {
   inset: -4%;
   z-index: -3;
   background-image:
-    linear-gradient(180deg, rgba(5, 9, 20, 0.82) 0%, rgba(5, 16, 37, 0.46) 48%, rgba(5, 9, 20, 0.82) 100%),
-    linear-gradient(135deg, rgba(92, 145, 220, 0.24), rgba(13, 30, 54, 0.42) 54%, rgba(5, 9, 20, 0.32)),
+    linear-gradient(180deg, rgba(5, 9, 20, 0.78) 0%, rgba(8, 24, 50, 0.38) 48%, rgba(5, 9, 20, 0.76) 100%),
+    linear-gradient(135deg, rgba(104, 168, 255, 0.28), rgba(17, 42, 74, 0.38) 54%, rgba(5, 9, 20, 0.28)),
     url("assets/crystal-stage.jpg");
   background-position: 50% 68%;
   background-size: cover;
-  filter: contrast(1.08) brightness(0.54) saturate(0.74);
+  filter: contrast(1.08) brightness(0.6) saturate(0.84);
   transform: scale(1.08);
   will-change: transform;
 }
@@ -461,8 +461,8 @@ a:focus-visible {
   inset: 0;
   z-index: -2;
   background:
-    linear-gradient(180deg, rgba(5, 9, 20, 0.86) 0%, transparent 30%, rgba(5, 16, 37, 0.16) 57%, var(--black) 100%),
-    radial-gradient(circle at 50% 42%, transparent 15%, rgba(5, 16, 37, 0.48) 78%);
+    linear-gradient(180deg, rgba(5, 9, 20, 0.82) 0%, transparent 30%, rgba(8, 24, 50, 0.14) 57%, var(--black) 100%),
+    radial-gradient(circle at 50% 42%, transparent 15%, rgba(8, 24, 50, 0.42) 78%);
 }
 
 .hero__content {
@@ -1067,7 +1067,7 @@ main > section {
 
 .shuttle__privacy {
   margin: 1.25rem 0 0;
-  color: #7891b2;
+  color: #8ca9d2;
   font-size: 0.68rem;
 }
 
@@ -1248,6 +1248,63 @@ main > section {
 
   .gift__copy {
     margin-bottom: 1.8rem;
+  }
+
+  .shuttle.section {
+    padding-top: 3.5rem;
+    padding-bottom: calc(3.5rem + env(safe-area-inset-bottom));
+  }
+
+  .shuttle .eyebrow {
+    margin-bottom: 0.7rem;
+  }
+
+  .shuttle .section-title {
+    margin-bottom: 1.45rem;
+    font-size: clamp(2.45rem, 11vw, 5rem);
+    line-height: 0.9;
+  }
+
+  .shuttle__copy {
+    margin: -0.45rem 0 1.35rem;
+    font-size: 0.79rem;
+    line-height: 1.5;
+  }
+
+  .shuttle-form {
+    gap: 0.72rem;
+  }
+
+  .shuttle-form__field {
+    gap: 0.38rem;
+  }
+
+  .shuttle-form__field input:not([type="checkbox"]) {
+    padding: 0.72rem 0.85rem;
+  }
+
+  .shuttle-form__help {
+    font-size: 0.6rem;
+  }
+
+  .shuttle-form__consent {
+    gap: 0.55rem;
+    margin-top: 0.05rem;
+  }
+
+  .shuttle-form__consent span {
+    font-size: 0.65rem;
+    line-height: 1.35;
+  }
+
+  .shuttle-form__submit {
+    min-height: 3.25rem;
+    margin-top: 0.1rem;
+  }
+
+  .shuttle__privacy {
+    margin-top: 0.65rem;
+    font-size: 0.62rem;
   }
 
   .iban-card__number {

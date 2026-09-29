@@ -20,7 +20,7 @@ Poi apri `http://localhost:4173`.
 
 ## Dati modificabili
 
-Data, orario e IBAN sono raccolti nell’oggetto `EVENT` all’inizio di `script.js`. La musica usa il preview ufficiale Apple Music, avviato dal tap per essere compatibile con iPhone. Il valore IBAN iniziale è volutamente fittizio e va sostituito prima di condividere il sito.
+Data, orario e IBAN sono raccolti nell’oggetto `EVENT` all’inizio di `script.js`. La musica usa il preview ufficiale Apple Music, avviato dal tap per essere compatibile con iPhone.
 
 La richiesta navetta usa il backend statico FormSubmit e invia nome, cognome e numero mobile italiano a `valerielinc@gmail.com`. Nel form si inseriscono 10 cifre senza `+39`; il prefisso viene aggiunto automaticamente alla richiesta. Al primo invio è necessario confermare l’indirizzo dalla email di attivazione di FormSubmit.
 
