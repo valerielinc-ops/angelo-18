@@ -1231,6 +1231,26 @@ main > section {
   }
 }
 
+@media (max-width: 699px) {
+  .iban-card__number {
+    min-width: 0;
+  }
+
+  .iban-card__number strong {
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    white-space: nowrap;
+    font-size: clamp(0.68rem, 3.9vw, 1.05rem);
+    letter-spacing: 0.025em;
+    line-height: 1.2;
+  }
+
+  .iban-card__number strong::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @media (max-width: 699px) and (max-height: 900px) {
   .section {
     padding-top: 4.75rem;
