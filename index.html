@@ -81,7 +81,7 @@
 
     <audio
       id="soundtrack"
-      src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c9/aa/63/c9aa63e1-7f15-8b04-7255-7d4466c10028/mzaf_14263624320297744244.plus.aac.p.m4a"
+      src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ef/eb/29/efeb2948-724e-95e3-4611-fcf47d933b15/mzaf_13115932052993136001.plus.aac.ep.m4a"
       preload="auto"
       loop
       aria-hidden="true"
@@ -264,36 +264,6 @@
         </div>
       </section>
 
-      <section class="gift section" id="gift" aria-labelledby="gift-title">
-        <div class="gift__flare" aria-hidden="true"></div>
-        <div class="section__inner">
-          <p class="eyebrow reveal">A little something</p>
-          <h2 class="section-title reveal" id="gift-title">Il regalo?<br /><em>Un ricordo.</em></h2>
-          <p class="gift__copy reveal">
-            Se vuoi contribuire al prossimo capitolo di Angelo, qui trovi le coordinate.
-          </p>
-
-          <div class="iban-card reveal" id="iban-card">
-            <div class="iban-card__top">
-              <span>Intestatario</span>
-              <strong>Angelo Caldarelli</strong>
-            </div>
-            <div class="iban-card__number">
-              <span>IBAN</span>
-              <strong id="iban-value">IT07N0306940283100000010474</strong>
-            </div>
-            <button class="copy-button" id="copy-iban" type="button">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="8" y="8" width="12" height="12" rx="2" />
-                <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
-              </svg>
-              <span>Copia IBAN</span>
-            </button>
-          </div>
-          <p class="iban-note reveal" id="iban-note">Coordinate bancarie in aggiornamento.</p>
-        </div>
-      </section>
-
       <section class="finale section" aria-labelledby="finale-title">
         <div class="finale__crystal" aria-hidden="true"></div>
         <div class="section__inner finale__inner">
@@ -305,11 +275,49 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
           </button>
 
-          <a class="track-credit reveal" href="https://www.youtube.com/watch?v=dScPWds_mZI" target="_blank" rel="noopener noreferrer">
+          <a class="track-credit reveal" href="https://music.apple.com/us/song/free-your-mind/1884097804" target="_blank" rel="noopener noreferrer">
             <span>Now playing</span>
-            <strong>Movin’ To The Sun</strong>
-            <small>HUGEL · Imael Angel · Ultra Naté</small>
+            <strong>Free Your Mind</strong>
+            <small>PROSPA · CLOONEE · SYBIL</small>
           </a>
+        </div>
+      </section>
+
+      <section class="gift section" id="gift" aria-labelledby="gift-title">
+        <div class="gift__flare" aria-hidden="true"></div>
+        <div class="section__inner">
+          <p class="eyebrow reveal">Note finali</p>
+          <h2 class="section-title reveal" id="gift-title">Un piccolo<br /><em>dettaglio.</em></h2>
+          <p class="gift__copy reveal">
+            Le coordinate bancarie sono disponibili qui, per chi desidera averle a portata di mano.
+          </p>
+
+          <details class="gift-details reveal">
+            <summary>
+              <span>Apri le coordinate</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+            </summary>
+            <div class="gift-details__body">
+              <div class="iban-card" id="iban-card">
+                <div class="iban-card__top">
+                  <span>Intestatario</span>
+                  <strong>Angelo Caldarelli</strong>
+                </div>
+                <div class="iban-card__number">
+                  <span>IBAN</span>
+                  <strong id="iban-value">IT07N0306940283100000010474</strong>
+                </div>
+                <button class="copy-button" id="copy-iban" type="button">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="12" rx="2" />
+                    <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
+                  </svg>
+                  <span>Copia IBAN</span>
+                </button>
+              </div>
+              <p class="iban-note" id="iban-note">Coordinate bancarie in aggiornamento.</p>
+            </div>
+          </details>
         </div>
       </section>
     </main>

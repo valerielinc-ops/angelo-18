@@ -818,27 +818,127 @@ main > section {
 }
 
 .gift {
+  min-height: auto;
+  padding-top: clamp(4.5rem, 10vw, 7rem);
+  padding-bottom: calc(clamp(4.5rem, 10vw, 7rem) + env(safe-area-inset-bottom));
   background:
-    linear-gradient(145deg, rgba(35, 83, 145, 0.2), transparent 50%),
+    linear-gradient(145deg, rgba(35, 83, 145, 0.11), transparent 50%),
     #07101f;
 }
 
 .gift__flare {
   position: absolute;
-  top: 15%;
-  right: -7rem;
-  width: 16rem;
-  height: 16rem;
-  border: 1px solid rgba(108, 167, 239, 0.25);
+  top: 25%;
+  right: -8rem;
+  width: 14rem;
+  height: 14rem;
+  border: 1px solid rgba(108, 167, 239, 0.14);
   transform: rotate(45deg) skew(8deg, 8deg);
 }
 
+.gift .eyebrow {
+  color: #7892b2;
+}
+
+.gift .section-title {
+  margin-bottom: 1.45rem;
+  font-size: clamp(2.2rem, 9vw, 4.6rem);
+  opacity: 0.88;
+}
+
 .gift__copy {
-  max-width: 30rem;
-  margin: -1.7rem 0 2.8rem;
-  color: #a7b8ce;
-  font-size: 0.88rem;
-  line-height: 1.75;
+  max-width: 31rem;
+  margin: 0 0 1.6rem;
+  color: #879db9;
+  font-size: 0.78rem;
+  line-height: 1.65;
+}
+
+.gift-details {
+  max-width: 36rem;
+  border-top: 1px solid rgba(151, 184, 223, 0.2);
+}
+
+.gift-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  color: #9ab1cf;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.gift-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.gift-details summary svg {
+  width: 1rem;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+  transition: transform 0.3s ease;
+}
+
+.gift-details[open] summary svg {
+  transform: rotate(180deg);
+}
+
+.gift-details__body {
+  padding-top: 0.55rem;
+  animation: coordinates-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: top center;
+}
+
+@keyframes coordinates-reveal {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    filter: blur(5px);
+    transform: translateY(-0.7rem) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0);
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+.gift .iban-card {
+  max-width: 36rem;
+  border-color: rgba(159, 194, 237, 0.16);
+  padding: 1.25rem;
+  background:
+    linear-gradient(125deg, rgba(76, 132, 207, 0.12), transparent 35%),
+    #09172a;
+  box-shadow: none;
+}
+
+.gift .iban-card__number {
+  margin-top: 2.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.gift .iban-card__number strong {
+  font-size: clamp(1rem, 5.2vw, 1.6rem);
+  letter-spacing: 0.04em;
+}
+
+.gift .copy-button {
+  color: #95adca;
+  font-size: 0.56rem;
+  opacity: 0.88;
 }
 
 .iban-card {
