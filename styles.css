@@ -973,6 +973,12 @@ main > section {
   text-transform: uppercase;
 }
 
+.shuttle-form__help {
+  color: #829abd;
+  font-size: 0.65rem;
+  line-height: 1.45;
+}
+
 .shuttle-form__field input:not([type="checkbox"]) {
   width: 100%;
   border: 1px solid rgba(159, 194, 237, 0.28);
@@ -1173,6 +1179,11 @@ main > section {
 }
 
 @media (min-width: 700px) {
+  .section {
+    padding-top: clamp(5rem, 8vw, 7rem);
+    padding-bottom: clamp(5rem, 8vw, 7rem);
+  }
+
   .hero {
     padding-top: 9rem;
   }
@@ -1192,7 +1203,7 @@ main > section {
 
   .detail-card {
     grid-template-columns: 3rem 1fr auto;
-    padding: 2.2rem 0 3rem;
+    padding: 1.6rem 0 2.1rem;
   }
 
   .primary-button {
@@ -1203,6 +1214,7 @@ main > section {
 
   .shuttle-form {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem 1.15rem;
   }
 
   .shuttle-form__field--full {
@@ -1241,6 +1253,11 @@ main > section {
 }
 
 @media (min-width: 1024px) {
+  .section {
+    padding-top: clamp(3.25rem, 4vw, 4.5rem);
+    padding-bottom: clamp(3.25rem, 4vw, 4.5rem);
+  }
+
   .hero__content {
     margin-top: 2rem;
   }
@@ -1253,7 +1270,7 @@ main > section {
   .details .section__inner {
     display: grid;
     grid-template-columns: minmax(15rem, 0.8fr) 1.2fr;
-    column-gap: 7rem;
+    column-gap: 5rem;
   }
 
   .details .eyebrow,
@@ -1280,6 +1297,27 @@ main > section {
 
   .details .primary-button {
     grid-row: 4;
+    margin-top: 0.55rem;
+  }
+
+  .details .section-title {
+    margin-bottom: 2.3rem;
+  }
+
+  .shuttle__copy {
+    margin-bottom: 1.6rem;
+  }
+
+  .gift__copy {
+    margin-bottom: 2rem;
+  }
+
+  .finale__title {
+    margin-bottom: 2rem;
+  }
+
+  .track-credit {
+    margin-top: 0.75rem;
   }
 
   .gift .section__inner {

@@ -237,7 +237,8 @@
             </label>
             <label class="shuttle-form__field shuttle-form__field--full">
               <span>Numero di telefono</span>
-              <input id="shuttle-phone" name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="+41 ... / +39 ..." required />
+              <input id="shuttle-phone" name="telefono" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="333 1234567" pattern="[0-9]{10}" minlength="10" maxlength="10" aria-describedby="shuttle-phone-help" required />
+              <small class="shuttle-form__help" id="shuttle-phone-help">10 cifre, senza +39 (es. 3331234567)</small>
             </label>
             <label class="shuttle-form__consent shuttle-form__field--full">
               <input name="conferma" type="checkbox" value="Confermo la richiesta di navetta" required />

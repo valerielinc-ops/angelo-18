@@ -87,7 +87,19 @@ function closestSectionIndex() {
 
 function sectionTargetY(index) {
   if (index === 0) return 0;
-  return Math.max(0, sections[index].offsetTop - header.offsetHeight);
+
+  const section = sections[index];
+  const headerOffset = header.offsetHeight;
+  const availableHeight = window.innerHeight - headerOffset;
+
+  // On desktop, short sections are centered in the available viewport so their
+  // primary action remains visible. Taller sections still start below the
+  // fixed header and can breathe naturally into the next scroll gesture.
+  if (window.innerWidth >= 700 && section.offsetHeight < availableHeight) {
+    return Math.max(0, section.offsetTop - headerOffset - (availableHeight - section.offsetHeight) / 2);
+  }
+
+  return Math.max(0, section.offsetTop - headerOffset);
 }
 
 function goToSection(index) {
@@ -145,7 +157,7 @@ window.addEventListener("wheel", (event) => {
   wheelIdleTimer = window.setTimeout(() => {
     wheelDelta = 0;
     wheelGestureUsed = false;
-  }, 180);
+  }, 280);
 
   if (wheelGestureUsed || sectionAnimationActive) return;
 
@@ -327,7 +339,7 @@ copyIbanButton.addEventListener("click", async () => {
 
 document.querySelector("#share-button").addEventListener("click", () => {
   const shareUrl = new URL(window.location.href);
-  shareUrl.searchParams.set("v", "5");
+  shareUrl.searchParams.set("v", "6");
   shareUrl.hash = "";
   const message = [
     "Angelo compie 18 anni ✦",
@@ -341,6 +353,11 @@ document.querySelector("#share-button").addEventListener("click", () => {
 const shuttleForm = document.querySelector("#shuttle-form");
 const shuttleSubmit = shuttleForm.querySelector("button[type=submit]");
 const shuttleStatus = document.querySelector("#shuttle-status");
+const shuttlePhone = document.querySelector("#shuttle-phone");
+
+shuttlePhone.addEventListener("input", () => {
+  shuttlePhone.value = shuttlePhone.value.replace(/\D/g, "").slice(0, 10);
+});
 
 shuttleForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -349,9 +366,12 @@ shuttleForm.addEventListener("submit", async (event) => {
   shuttleStatus.classList.remove("is-error", "is-success");
 
   try {
+    const payload = new FormData(shuttleForm);
+    payload.set("telefono", `+39 ${shuttlePhone.value}`);
+
     const response = await fetch(shuttleForm.action, {
       method: "POST",
-      body: new FormData(shuttleForm),
+      body: payload,
       headers: { Accept: "application/json" },
     });
     const result = await response.json().catch(() => null);
