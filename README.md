@@ -6,7 +6,7 @@ Live: <https://angelo18.ch/>
 
 Fallback GitHub Pages: <https://valerielinc-ops.github.io/angelo-18/>
 
-Teaser verticale per WhatsApp: <https://angelo18.ch/assets/angelo-18-teaser.mp4>
+Teaser verticale cinematografico per WhatsApp (caduta del cristallo, reveal dell'invito e chiusura “STAY TUNED”): <https://angelo18.ch/assets/angelo-18-teaser.mp4>
 
 ## Sviluppo locale
 
