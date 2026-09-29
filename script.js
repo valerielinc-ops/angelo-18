@@ -19,8 +19,10 @@ const copyIbanButton = document.querySelector("#copy-iban");
 const toast = document.querySelector("#toast");
 const sections = [...document.querySelectorAll("main > section")];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const SOUNDTRACK_HOOK_OFFSET = 28;
 
 let isMusicPlaying = false;
+let soundtrackStartApplied = false;
 let toastTimer;
 let activeSectionIndex = 0;
 let sectionAnimationFrame;
@@ -36,9 +38,21 @@ let touchLastY = 0;
 document.body.classList.add("is-locked");
 musicToggle.hidden = true;
 
+function seekSoundtrackHook() {
+  if (
+    !soundtrackStartApplied &&
+    Number.isFinite(soundtrack.duration) &&
+    soundtrack.duration > SOUNDTRACK_HOOK_OFFSET
+  ) {
+    soundtrack.currentTime = SOUNDTRACK_HOOK_OFFSET;
+    soundtrackStartApplied = true;
+  }
+}
+
 async function startMusic() {
   try {
     soundtrack.volume = 0.9;
+    seekSoundtrackHook();
     await soundtrack.play();
   } catch {
     isMusicPlaying = false;
@@ -46,6 +60,12 @@ async function startMusic() {
     showToast("Tocca Sound on per avviare la musica");
   }
 }
+
+soundtrack.addEventListener("loadedmetadata", seekSoundtrackHook);
+soundtrack.addEventListener("ended", () => {
+  soundtrack.currentTime = SOUNDTRACK_HOOK_OFFSET;
+  soundtrack.play().catch(() => {});
+});
 
 function stopMusic() {
   soundtrack.pause();
