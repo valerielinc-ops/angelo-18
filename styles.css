@@ -1230,7 +1230,7 @@ main > section {
 @media (max-width: 699px) and (max-height: 900px) {
   .section {
     padding-top: 4.75rem;
-    padding-bottom: 4.75rem;
+    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
   }
 
   .section-title {

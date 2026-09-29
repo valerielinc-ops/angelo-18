@@ -91,6 +91,23 @@ function sectionTargetY(index) {
   const section = sections[index];
   const headerOffset = header.offsetHeight;
   const availableHeight = window.innerHeight - headerOffset;
+  const baseTarget = Math.max(0, section.offsetTop - headerOffset);
+
+  // iOS Safari can expose a shorter visual viewport while its bottom browser
+  // bar is open. Keep the section action above that changing lower edge.
+  if (window.innerWidth < 700) {
+    const action = section.querySelector(".primary-button, .copy-button");
+    const viewportHeight = window.visualViewport?.height || window.innerHeight;
+    const bottomSafeSpace = Math.max(36, Math.min(56, viewportHeight * 0.07));
+
+    if (action) {
+      const actionBottom = window.scrollY + action.getBoundingClientRect().bottom;
+      const actionTarget = actionBottom - (viewportHeight - bottomSafeSpace);
+      return Math.max(baseTarget, actionTarget);
+    }
+
+    return baseTarget;
+  }
 
   // On desktop, short sections are centered in the available viewport so their
   // primary action remains visible. Taller sections still start below the
@@ -99,7 +116,7 @@ function sectionTargetY(index) {
     return Math.max(0, section.offsetTop - headerOffset - (availableHeight - section.offsetHeight) / 2);
   }
 
-  return Math.max(0, section.offsetTop - headerOffset);
+  return baseTarget;
 }
 
 function goToSection(index) {
