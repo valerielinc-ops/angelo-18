@@ -893,13 +893,19 @@ main > section {
 }
 
 .iban-card__number strong {
-  max-width: 19rem;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
   font-family: "Montserrat", sans-serif;
   font-size: clamp(1.2rem, 6.3vw, 2rem);
   font-weight: 500;
   letter-spacing: 0.065em;
-  line-height: 1.45;
-  overflow-wrap: anywhere;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.iban-card__number strong::-webkit-scrollbar {
+  display: none;
 }
 
 .copy-button {
@@ -1237,17 +1243,8 @@ main > section {
   }
 
   .iban-card__number strong {
-    max-width: 100%;
-    overflow-x: auto;
-    scrollbar-width: none;
-    white-space: nowrap;
     font-size: clamp(0.68rem, 3.9vw, 1.05rem);
     letter-spacing: 0.025em;
-    line-height: 1.2;
-  }
-
-  .iban-card__number strong::-webkit-scrollbar {
-    display: none;
   }
 }
 
