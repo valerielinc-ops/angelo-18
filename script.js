@@ -1,7 +1,7 @@
 const EVENT = {
-  startsAt: new Date("2026-11-22T20:00:00+01:00"),
-  endsAt: new Date("2026-11-23T01:00:00+01:00"),
-  title: "Angelo 18 — Black Party",
+  startsAt: new Date("2026-11-22T20:30:00+01:00"),
+  endsAt: new Date("2026-11-23T01:30:00+01:00"),
+  title: "Angelo 18 — Midnight Elegance",
   location: "LUHMA Beef & Sushi Bar, Via Stabia 6, 84012 Angri SA",
   iban: "IT00 0000 0000 0000 0000 0000 000", // Sostituisci con l’IBAN reale.
 };
@@ -284,7 +284,7 @@ document.querySelector("#calendar-button").addEventListener("click", () => {
   const lines = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Angelo 18//Black Party//IT",
+    "PRODID:-//Angelo 18//Midnight Elegance//IT",
     "BEGIN:VEVENT",
     `UID:angelo-18-${EVENT.startsAt.getTime()}@invite`,
     `DTSTAMP:${formatCalendarDate(new Date())}`,
@@ -292,14 +292,14 @@ document.querySelector("#calendar-button").addEventListener("click", () => {
     `DTEND:${formatCalendarDate(EVENT.endsAt)}`,
     `SUMMARY:${EVENT.title}`,
     `LOCATION:${EVENT.location}`,
-    "DESCRIPTION:Dress code: Black. Obviously.",
+    "DESCRIPTION:Dress code: Elegant Dark Suit.",
     "END:VEVENT",
     "END:VCALENDAR",
   ];
   const file = new Blob([lines.join("\r\n")], { type: "text/calendar;charset=utf-8" });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(file);
-  link.download = "angelo-18-black-party.ics";
+  link.download = "angelo-18-midnight-elegance.ics";
   link.click();
   URL.revokeObjectURL(link.href);
 });
@@ -327,15 +327,45 @@ copyIbanButton.addEventListener("click", async () => {
 
 document.querySelector("#share-button").addEventListener("click", () => {
   const shareUrl = new URL(window.location.href);
-  shareUrl.searchParams.set("v", "4");
+  shareUrl.searchParams.set("v", "5");
   shareUrl.hash = "";
   const message = [
     "Angelo compie 18 anni ✦",
-    "22 novembre 2026 · ore 20:00",
+    "22 novembre 2026 · ore 20:30",
     "LUHMA Beef & Sushi Bar · Angri",
     shareUrl.toString(),
   ].join("\n");
   window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+});
+
+const shuttleForm = document.querySelector("#shuttle-form");
+const shuttleSubmit = shuttleForm.querySelector("button[type=submit]");
+const shuttleStatus = document.querySelector("#shuttle-status");
+
+shuttleForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  shuttleSubmit.disabled = true;
+  shuttleStatus.textContent = "Invio della richiesta…";
+  shuttleStatus.classList.remove("is-error", "is-success");
+
+  try {
+    const response = await fetch(shuttleForm.action, {
+      method: "POST",
+      body: new FormData(shuttleForm),
+      headers: { Accept: "application/json" },
+    });
+    const result = await response.json().catch(() => null);
+    if (!response.ok || result?.success === false) throw new Error("submit-failed");
+
+    shuttleForm.reset();
+    shuttleStatus.textContent = "Richiesta ricevuta. Ti contatteremo per confermare la navetta.";
+    shuttleStatus.classList.add("is-success");
+  } catch {
+    shuttleStatus.textContent = "Non è stato possibile inviare la richiesta. Riprova tra poco.";
+    shuttleStatus.classList.add("is-error");
+  } finally {
+    shuttleSubmit.disabled = false;
+  }
 });
 
 document.querySelectorAll(".magnetic").forEach((button) => {

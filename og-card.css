@@ -25,15 +25,17 @@ body {
 }
 
 .card__image {
-  background: url("assets/crystal-stage.jpg") 50% 73% / cover no-repeat;
+  background:
+    linear-gradient(135deg, rgba(13, 46, 91, 0.34), transparent 58%),
+    url("assets/crystal-stage.jpg") 50% 73% / cover no-repeat;
   filter: contrast(1.15) brightness(0.74);
   transform: scale(1.02);
 }
 
 .card__shade {
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.63) 42%, transparent 72%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.56), transparent 38%, rgba(0, 0, 0, 0.42));
+    linear-gradient(90deg, rgba(3, 10, 24, 0.96) 0%, rgba(4, 16, 37, 0.68) 42%, transparent 72%),
+    linear-gradient(180deg, rgba(2, 8, 19, 0.58), transparent 38%, rgba(3, 10, 24, 0.48));
 }
 
 .card__content {
@@ -112,7 +114,7 @@ body {
 
 .card__details span {
   margin-bottom: 3px;
-  font-size: 43px;
+  font-size: 38px;
   font-weight: 800;
   letter-spacing: 0.1em;
   line-height: 1;

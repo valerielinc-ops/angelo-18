@@ -3,26 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" content="#091426" />
     <meta name="color-scheme" content="dark" />
 
-    <title>Angelo 18 — Black Party</title>
+    <title>Angelo 18 — Midnight Elegance</title>
     <meta
       name="description"
-      content="Sei invitato ai 18 anni di Angelo. 22 novembre 2026, ore 20:00, LUHMA Beef & Sushi Bar — Angri."
+      content="Sei invitato ai 18 anni di Angelo. 22 novembre 2026, ore 20:30, LUHMA Beef & Sushi Bar — Angri. Dress code: Elegant Dark Suit."
     />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://angelo18.ch/" />
-    <meta property="og:title" content="Angelo 18 — Black Party" />
+    <meta property="og:title" content="Angelo 18 — Midnight Elegance" />
     <meta
       property="og:description"
-      content="22 novembre 2026 · ore 20:00 · LUHMA, Angri. Tocca per entrare nella festa."
+      content="22 novembre 2026 · ore 20:30 · LUHMA, Angri. Dress code: Elegant Dark Suit."
     />
-    <meta property="og:image" content="https://angelo18.ch/assets/angelo-18-whatsapp-v3.jpg" />
+    <meta property="og:image" content="https://angelo18.ch/assets/angelo-18-whatsapp-v4.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Angelo 18 Black Party, 22 novembre 2026" />
+    <meta property="og:image:alt" content="Angelo 18 Midnight Elegance, 22 novembre 2026" />
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="canonical" href="https://angelo18.ch/" />
@@ -100,10 +100,10 @@
             <span class="hero__years">years<br />young</span>
           </div>
 
-          <div class="event-stamp reveal" aria-label="Domenica 22 novembre 2026 alle ore 20">
+          <div class="event-stamp reveal" aria-label="Domenica 22 novembre 2026 alle ore 20 e 30">
             <span>Domenica</span>
             <strong>22 · 11 · 26</strong>
-            <span>ore 20:00</span>
+            <span>ore 20:30</span>
           </div>
         </div>
 
@@ -151,7 +151,7 @@
           </p>
           <div class="dress-code reveal">
             <span>Dress code</span>
-            <strong>Black. Obviously.</strong>
+            <strong>Elegant Dark Suit.</strong>
           </div>
         </div>
       </section>
@@ -166,7 +166,7 @@
             <div>
               <p class="detail-card__label">Data & ora</p>
               <h3>Domenica<br />22 novembre</h3>
-              <p>Start h 20:00 · 2026</p>
+              <p>Start h 20:30 · 2026</p>
             </div>
             <button class="icon-button" id="calendar-button" type="button" aria-label="Aggiungi la festa al calendario">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -209,6 +209,50 @@
         </div>
       </section>
 
+      <section class="shuttle section" id="shuttle" aria-labelledby="shuttle-title">
+        <div class="section__inner shuttle__inner">
+          <p class="eyebrow reveal">Arriva con noi</p>
+          <h2 class="section-title reveal" id="shuttle-title">Richiedi<br /><em>la navetta.</em></h2>
+          <p class="shuttle__copy reveal">
+            Lascia i tuoi dati e ti contatteremo per confermare orari e fermata.
+          </p>
+
+          <form
+            class="shuttle-form reveal"
+            id="shuttle-form"
+            action="https://formsubmit.co/ajax/valerielinc@gmail.com"
+            method="POST"
+          >
+            <input type="hidden" name="_subject" value="Richiesta navetta — Angelo 18" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" class="shuttle-form__honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <label class="shuttle-form__field">
+              <span>Nome</span>
+              <input id="shuttle-name" name="nome" type="text" autocomplete="given-name" required />
+            </label>
+            <label class="shuttle-form__field">
+              <span>Cognome</span>
+              <input id="shuttle-surname" name="cognome" type="text" autocomplete="family-name" required />
+            </label>
+            <label class="shuttle-form__field shuttle-form__field--full">
+              <span>Numero di telefono</span>
+              <input id="shuttle-phone" name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="+41 ... / +39 ..." required />
+            </label>
+            <label class="shuttle-form__consent shuttle-form__field--full">
+              <input name="conferma" type="checkbox" value="Confermo la richiesta di navetta" required />
+              <span>Confermo la richiesta di navetta e autorizzo il contatto per l’organizzazione del servizio.</span>
+            </label>
+            <button class="primary-button magnetic shuttle-form__submit shuttle-form__field--full" type="submit">
+              <span>Conferma richiesta</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
+            </button>
+            <p class="shuttle-form__status shuttle-form__field--full" id="shuttle-status" role="status" aria-live="polite"></p>
+          </form>
+          <p class="shuttle__privacy reveal">I dati saranno usati solo per organizzare la navetta.</p>
+        </div>
+      </section>
+
       <section class="gift section" id="gift" aria-labelledby="gift-title">
         <div class="gift__flare" aria-hidden="true"></div>
         <div class="section__inner">
@@ -243,7 +287,7 @@
         <div class="finale__crystal" aria-hidden="true"></div>
         <div class="section__inner finale__inner">
           <p class="eyebrow reveal">22 novembre 2026</p>
-          <h2 class="finale__title reveal" id="finale-title">See you<br />on the<br /><span>dark side.</span></h2>
+          <h2 class="finale__title reveal" id="finale-title">See you<br />under the<br /><span>midnight lights.</span></h2>
 
           <button class="primary-button primary-button--light magnetic reveal" id="share-button" type="button">
             <span>Condividi su WhatsApp</span>

@@ -1,4 +1,4 @@
-# Angelo 18 — Black Party
+# Angelo 18 — Midnight Elegance
 
 Invito web statico mobile-first per i 18 anni di Angelo Caldarelli.
 
@@ -18,7 +18,9 @@ Poi apri `http://localhost:4173`.
 
 ## Dati modificabili
 
-Data e IBAN sono raccolti nell’oggetto `EVENT` all’inizio di `script.js`. La musica usa il preview ufficiale Apple Music, avviato dal tap per essere compatibile con iPhone. Il valore IBAN iniziale è volutamente fittizio e va sostituito prima di condividere il sito.
+Data, orario e IBAN sono raccolti nell’oggetto `EVENT` all’inizio di `script.js`. La musica usa il preview ufficiale Apple Music, avviato dal tap per essere compatibile con iPhone. Il valore IBAN iniziale è volutamente fittizio e va sostituito prima di condividere il sito.
+
+La richiesta navetta usa il backend statico FormSubmit e invia nome, cognome e telefono a `valerielinc@gmail.com`. Al primo invio è necessario confermare l’indirizzo dalla email di attivazione di FormSubmit.
 
 ## Pubblicazione
 
