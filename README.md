@@ -6,6 +6,8 @@ Live: <https://angelo18.ch/>
 
 Fallback GitHub Pages: <https://valerielinc-ops.github.io/angelo-18/>
 
+Teaser verticale per WhatsApp: <https://angelo18.ch/assets/angelo-18-teaser.mp4>
+
 ## Sviluppo locale
 
 Il sito non richiede una build. Avvialo con un server statico:
