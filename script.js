@@ -17,9 +17,17 @@ const ibanValue = document.querySelector("#iban-value");
 const ibanNote = document.querySelector("#iban-note");
 const copyIbanButton = document.querySelector("#copy-iban");
 const toast = document.querySelector("#toast");
-const sections = [...document.querySelectorAll("main > section")];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const SOUNDTRACK_HOOK_OFFSET = 28;
+const SOUNDTRACK_HOOK_OFFSET = 0;
+
+const isWwwVariant = window.location.hostname.toLowerCase() === "www.angelo18.ch";
+const giftSection = document.querySelector("#gift");
+
+if (isWwwVariant) {
+  giftSection?.remove();
+}
+
+const sections = [...document.querySelectorAll("main > section")];
 
 let isMusicPlaying = false;
 let soundtrackStartApplied = false;
@@ -360,19 +368,21 @@ function showToast(message) {
   toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2200);
 }
 
-const hasRealIban = !EVENT.iban.startsWith("IT00 0000");
-ibanValue.textContent = EVENT.iban;
-copyIbanButton.disabled = !hasRealIban;
-ibanNote.hidden = hasRealIban;
+if (giftSection) {
+  const hasRealIban = !EVENT.iban.startsWith("IT00 0000");
+  ibanValue.textContent = EVENT.iban;
+  copyIbanButton.disabled = !hasRealIban;
+  ibanNote.hidden = hasRealIban;
 
-copyIbanButton.addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(EVENT.iban.replaceAll(" ", ""));
-    showToast("IBAN copiato");
-  } catch {
-    showToast("Seleziona e copia l’IBAN");
-  }
-});
+  copyIbanButton.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(EVENT.iban.replaceAll(" ", ""));
+      showToast("IBAN copiato");
+    } catch {
+      showToast("Seleziona e copia l’IBAN");
+    }
+  });
+}
 
 document.querySelector("#share-button").addEventListener("click", () => {
   const shareUrl = new URL(window.location.href);
