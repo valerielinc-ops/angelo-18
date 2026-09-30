@@ -20,7 +20,9 @@ Poi apri `http://localhost:4173`.
 
 ## Dati modificabili
 
-Data, orario e IBAN sono raccolti nell’oggetto `EVENT` all’inizio di `script.js`. La musica usa il preview ufficiale Apple Music, avviato dal tap per essere compatibile con iPhone.
+Data, orario e IBAN sono raccolti nell’oggetto `EVENT` all’inizio di `script.js`. La musica usa il file MP3 fornito (`assets/free-your-mind-cut-52sec.mp3`), avviato dal tap per essere compatibile con iPhone.
+
+La variante pubblicata nella repository `angelo-18-www` non contiene la sezione regalo né le coordinate bancarie. GitHub Pages mantiene però `www.angelo18.ch` come alias con redirect automatico verso il dominio principale quando l’apice è configurato come dominio personalizzato; per servire la variante anche su `www` serve un hosting separato o una configurazione di forwarding presso il provider del dominio.
 
 La richiesta navetta usa il backend statico FormSubmit e invia nome, cognome e numero mobile italiano a `valerielinc@gmail.com`. Nel form si inseriscono 10 cifre senza `+39`; il prefisso viene aggiunto automaticamente alla richiesta. Al primo invio è necessario confermare l’indirizzo dalla email di attivazione di FormSubmit.
 
